@@ -1,8 +1,12 @@
 class FeedbacksController < ApplicationController
+  def hello_world
+    render json: {message: 'hello world'}
+  end
+
   def new
     render json: { message: 'hell world'}
   end
-
+  
   def create
     unless @info = Info.where(email: info_params.email)
       @info = Info.new(info_params)
@@ -21,6 +25,10 @@ class FeedbacksController < ApplicationController
 
   def info_params 
     params.require(:info).permit(:email, :first_name, :last_name)
+  end
+
+  def message_params 
+    params.require(:message).permit(:content)
   end
 
   def render_error

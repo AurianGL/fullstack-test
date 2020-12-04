@@ -7,6 +7,18 @@ namespace :welink do
 
   desc "lance serveur et client via foreman"
   task :start do
-    exec 'foreman start -p 3000'
+    exec 'rake welink:ascii && foreman start -p 3000'
+  end
+
+  task :ascii do 
+    puts
+    puts
+    File.open(File.join(Rails.root, "app/assets/image.txt")) do |file|
+      while line = file.gets
+        puts line
+      end
+    end
+    puts
+    puts
   end
 end

@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'feedbacks/hello_world'
-  get 'feedbacks/new'
-  post 'feedbacks/create'
+  ressources :feedbacks, only: [:create, :index]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

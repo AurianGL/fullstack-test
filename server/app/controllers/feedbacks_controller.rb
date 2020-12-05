@@ -1,10 +1,7 @@
 class FeedbacksController < ApplicationController
-  def hello_world
-    render json: {message: 'hello world'}
-  end
-
-  def new
-    render json: { message: 'hell world'}
+  def index
+    @messages = Message.includes(:info)
+    render json: @messages.json
   end
   
   def create

@@ -5,3 +5,30 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+require 'faker'
+
+puts 'reseting db'
+
+Message.destroy_all
+Info.destroy_all
+
+puts 'creating 10 infos with message'
+
+10.times do 
+  firstname = Faker::Movies::LordOfTheRings.character
+  lastname = Faker::Movies::LordOfTheRings.location
+  info = Info.create!(
+    firstname: firstname,
+    lastname: lastname,
+    email: "#{firstname}.#{lastname}@lotr.com"
+  )
+  content = Faker::Games::WarhammerFantasy.quote
+  message = Message.create!(
+    content: Faker::Games::WarhammerFantasy.quote,
+    info: info
+  )
+  puts
+  puts "#{firstname} of #{lastname} joined the battlefield"
+  puts "#{content}"
+  puts
+end

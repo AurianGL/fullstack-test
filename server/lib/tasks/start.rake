@@ -10,6 +10,7 @@ namespace :welink do
     exec 'rake welink:ascii && foreman start -p 3000'
   end
 
+  desc 'display some dumb fuck sauce stuff'
   task :ascii do 
     puts
     puts
@@ -21,4 +22,12 @@ namespace :welink do
     puts
     puts
   end
+
+  desc 'create migrate and seed'
+  task :db do
+    exec: 'rails db:drop db:create db:migrate db:seed'
+  end
+
+  desc 'install, init db, launch server'
+  task all: [:db, :install, :start]
 end

@@ -13,14 +13,14 @@ import { Home } from './pages/Home';
 const App = () => {
   return (
     <Router>
-      <div>
-        <nav>
-          <ul>
-            <li>
+      <div className='bg-gray-800 text-gray-200 h-screen'>
+        <nav >
+          <ul className='flex align-left bg-gray-900 text-pink-800 p-2'>
+            <li className='bg-pink-300 py-1 px-2 mr-1 rounded border-b-4 border-pink-600'>
               <Link to="/">Home</Link>
             </li>
-            <li>
-              <Link to="/feebacks">feedbacks</Link>
+            <li className='bg-pink-300 py-1 px-2 rounded border-b-4 border-pink-600'>
+              <Link to="/feedbacks/new">feedbacks</Link>
             </li>
           </ul>
         </nav>
@@ -28,10 +28,10 @@ const App = () => {
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
-          <Route path="/feedbacks">
+          <Route path="/feedbacks/new" exact>
             <Feedback />
           </Route>
-          <Route path="/">
+          <Route path="/" exact>
             <Home />
           </Route>
         </Switch>

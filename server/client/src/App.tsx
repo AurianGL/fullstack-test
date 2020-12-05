@@ -1,6 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 import {
   BrowserRouter as Router,
   Switch,
@@ -13,7 +11,7 @@ import { Home } from './pages/Home';
 const App = () => {
   return (
     <Router>
-      <div className='bg-gray-800 text-gray-200 h-screen'>
+      <div className='bg-gray-800 text-gray-200 min-h-screen'>
         <nav >
           <ul className='flex align-left bg-gray-900 text-pink-800 p-2'>
             <li className='bg-pink-300 py-1 px-2 mr-1 rounded border-b-4 border-pink-600'>

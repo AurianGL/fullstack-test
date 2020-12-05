@@ -1,7 +1,23 @@
 class FeedbacksController < ApplicationController
   def index
     @messages = Message.includes(:info)
-    render json: @messages.json
+    @res = []
+    @messages.each do |message|
+      @res << {
+        id: message.id,
+        content: message.content,
+        info: {
+          email: message.info.email,
+          firstname: message.info.firstname,
+          lastname: message.info.lastname
+        }
+      }
+    end
+    # here I hate two things 
+    # 1. active records doesn't actually return the result of a join query (because in return instances of a specific class)
+    # 2. map doesn't work on an array of active record instances 
+    # still there is only one query done but I'd like to be able to do @messages.json without having to pass threw the each or some jbuilder syntax
+    render json: @res.to_json
   end
   
   def create

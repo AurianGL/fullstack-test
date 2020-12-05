@@ -25,7 +25,7 @@ namespace :welink do
 
   desc 'create migrate and seed'
   task :db do
-    exec: 'rails db:drop db:create db:migrate db:seed'
+    exec 'rails db:drop db:create db:migrate db:seed'
   end
 
   desc 'install, init db, launch server'

@@ -9,31 +9,37 @@ import {
 	TextInput,
 } from '../components/index';
 import * as yup from 'yup';
+import { sendFeedack } from '../utils/api';
 
 interface FeedbackProps {}
 
+// define 2 steps validation schema with yup
 const InfoSchema = yup.object({
 	firstName: yup.string(),
 	lastName: yup.string(),
-	email: yup.string().email('invalid email').required('required')
+	email: yup.string().email('invalid email').required('required'),
 });
 
 const MessageSchema = yup.object({
 	content: yup.string().required('required'),
-})
+});
 
-type feedbackType = yup.InferType<typeof InfoSchema | typeof MessageSchema>;
+// infer type from the 2 steps validation schemas
+type InfoType = yup.InferType<typeof InfoSchema>;
+type MessageType = yup.InferType<typeof MessageSchema>;
+export interface FeedbackType extends InfoType, MessageType {}
+
+// define intitial values of feedback form
+const initialValues: FeedbackType = {
+	firstName: '',
+	lastName: '',
+	email: '',
+	content: '',
+};
 
 export const Feedback: React.FC<FeedbackProps> = () => {
 	const [step, setStep] = useState(1);
 	const handleSubmit = () => setStep(step + 1);
-
-	const initialValues: feedbackType = {
-		firstName: '',
-		lastName: '',
-		email: '',
-		content: '',
-	};
 
 	return (
 		<div className='container flex flex-col items-center '>
@@ -43,10 +49,14 @@ export const Feedback: React.FC<FeedbackProps> = () => {
 			<Formik
 				enableReinitialize
 				initialValues={initialValues}
-				validationSchema={step === 1 ? InfoSchema : step === 2 ? MessageSchema : null }
+				// dynamically set validation schema
+				validationSchema={
+					step === 1 ? InfoSchema : step === 2 ? MessageSchema : null
+				}
 				onSubmit={(values, errors) => {
-					handleSubmit();
-					console.log(errors);
+					if (step === 1)  handleSubmit();
+					if (step === 2) sendFeedack({...values}).then(res => handleSubmit());
+					console.log(values, errors);
 				}}>
 				{({ errors, touched }) => (
 					<Form className='w-11/12 lg:w-4/5 lg:w-1/2 xl:w-1/3 items-center '>
@@ -86,13 +96,13 @@ export const Feedback: React.FC<FeedbackProps> = () => {
 							)}
 							{step === 2 && (
 								<>
-									<Label name='lastName'>
+									<Label name='content'>
 										Your Feedback{' '}
 										{errors.content && touched.content && errors.content}
 									</Label>
 									<Field
-										id='contente'
-										name='contente'
+										id='content'
+										name='content'
 										placeholder='your feedback'
 										as={TextAreaInput}
 									/>

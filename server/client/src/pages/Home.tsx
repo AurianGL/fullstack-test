@@ -23,12 +23,13 @@ export const Home: React.FC<HomeProps> = () => {
   }, [])
 
     return (
-      <div  className='container mx-auto p-10 flex flex-col items-left '>
-        <div className="text-left text-2xl p-5 max-w-3xl">
+      <div className='w-11/12 lg:w-4/5 lg:w-1/2 xl:w-2/3 container mx-auto sm:p-2 lg:p-10 flex flex-col items-left '>
+        <div className="text-left text-2xl p-5">
           <h1>Feedbacks from Middle Earth</h1>
         </div>
+        {feedbacks.length === 0 && <div>Loading...</div>}
         {feedbacks.length > 0 && feedbacks.map((feedback) => 
-         <div key={feedback.id} className="rounded bg-gray-600 mb-3 p-3 max-w-3xl">
+         <div key={feedback.id} className="rounded bg-gray-600 mb-3 p-3 ">
             <div >
               {feedback.content}
             </div>

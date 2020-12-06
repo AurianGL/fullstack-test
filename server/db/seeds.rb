@@ -20,7 +20,7 @@ puts 'creating 10 infos with message'
   info = Info.create!(
     firstname: firstname,
     lastname: lastname,
-    email: "#{firstname}.#{lastname}@lotr.com"
+    email: "#{firstname}.#{lastname}@40k.com"
   )
   content = Faker::Games::WarhammerFantasy.quote
   message = Message.create!(

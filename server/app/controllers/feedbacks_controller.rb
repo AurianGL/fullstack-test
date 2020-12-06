@@ -25,7 +25,7 @@ class FeedbacksController < ApplicationController
     @info = Info.find_by(email: info_params[:email])
     unless @info
       @info = Info.new(info_params)
-      return render_error(@info) unless @info.save 
+      return render_error(@info) if @info.save 
     end
     @message = Message.new(message_params)
     puts @info

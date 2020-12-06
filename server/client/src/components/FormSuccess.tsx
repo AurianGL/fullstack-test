@@ -7,7 +7,7 @@ interface FormSuccessProps {
 export const FormSuccess: React.FC<FormSuccessProps> = () => {
     return (
       <div>
-        Feedbacks Gloriously Sent
+        Feedback Gloriously Sent !
       </div>
     );
 }

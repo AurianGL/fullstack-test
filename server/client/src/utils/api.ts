@@ -14,7 +14,7 @@ export const sendFeedack = async (values: FeedbackType) => {
     info: {lastname: lastName, firstname: firstName, email: email},
     message: {content: content}
   }
-  const query = await fetch("http://localhost:3001/feedbacks/new", {
+  const query = await fetch("http://localhost:3001/feedbacks", {
     method: "POST",
     headers: {
       'Accept': 'application/json, text/plain, */*',

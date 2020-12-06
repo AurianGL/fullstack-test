@@ -14,7 +14,7 @@ namespace :welink do
   task :ascii do 
     puts
     puts
-    File.open(File.join(Rails.root, "app/assets/image.txt")) do |file|
+    File.open(File.join(Rails.root, "app/assets/slaanesh.txt")) do |file|
       while line = file.gets
         puts line
       end

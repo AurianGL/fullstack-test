@@ -23,6 +23,5 @@ export const sendFeedack = async (values: FeedbackType) => {
     body: JSON.stringify({...data})
   })
   const res = await query.json()
-  console.log(res)
   return res
 }

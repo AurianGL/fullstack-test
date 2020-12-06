@@ -15,8 +15,8 @@ Info.destroy_all
 puts 'creating 10 infos with message'
 
 10.times do 
-  firstname = Faker::Movies::LordOfTheRings.character
-  lastname = Faker::Movies::LordOfTheRings.location
+  firstname = Faker::Games::WarhammerFantasy.hero
+  lastname = Faker::Games::WarhammerFantasy.location
   info = Info.create!(
     firstname: firstname,
     lastname: lastname,

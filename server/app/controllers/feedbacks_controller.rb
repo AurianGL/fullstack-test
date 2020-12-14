@@ -2,7 +2,7 @@ class FeedbacksController < ApplicationController
   def index
     if params[:p] && params[:n] && params[:p] != "0"
       index = (params[:p].to_i - 1) * params[:n].to_i
-      @messages = Message.includes(:info).limit(params[:n].to_i).offset(index)      
+      @messages = Message.includes(:info).order(created_at: :desc).limit(params[:n].to_i).offset(index)      
     else 
       @messages = Message.includes(:info)
     end
@@ -22,7 +22,17 @@ class FeedbacksController < ApplicationController
     # 1. active records doesn't actually return the result of a join query (because in return instances of a specific class)
     # 2. map doesn't work on an array of active record instances 
     # still there is only one query done but I'd like to be able to do @messages.json without having to pass threw the each or some jbuilder syntax
-    render json: @res.to_json
+    render json: @res
+    # this could also contain the number total of pages
+  end
+
+  def show
+    @message = Message.find(params[:id])
+    if @message
+      render json: {message: @message, info: @message.info}
+    else
+      render json: {mesage: "no message with id #{params}"}
+    end
   end
   
   def create

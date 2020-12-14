@@ -37,6 +37,10 @@ You'll have to make a three steps satisfaction form with [Ruby on Rails](https:/
 
 You tell me.
 
+`
+cd server &&  welink:install && rake welink:db && rake:start
+`
+
 ## Additional notes
 
 You don't have a time limit to finish. 

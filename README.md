@@ -42,7 +42,23 @@ cd server &&  welink:install && rake welink:db && rake:start
 `
 unfortunately this will work if you have the right version of ruby, node, npm, yarn, etc...
 Why didn't I used Docker or a similar solution ? because the computer I'm using right now is set up with WSL2 and running Docker is an absolute nightmare if you don't have an infinite amount of RAM availabl
-This is also not what I used to deploy the app. Because Heroku required a package.js at the root of the project and CRA would required to eject to be able to do that. So I simply splitted the 
+This is also not what I used to deploy the app. Because Heroku required a package.js at the root of the project and CRA would required to eject to be able to do that. So I simply splitted the back and front and used heroku and netlify.
+
+you can test the API here : https://obscure-reaches-09029.herokuapp.com/
+with the following endpoints: 
+* get feedbacks/:id
+* get  feedbacks?p=3&n=5
+* post feedbacks 
+`
+ curl -i -X POST                                                              \
+     -H 'Content-Type: application/json'                                     \
+     -d '{ "info": { "firstname": "hello", "lastname": "world", "email": "email@email.com"}, "message": {"content": "some content" }}' \
+     https://obscure-reaches-09029.herokuapp.com//feedbacks
+`
+
+why feedbacks and not feedback ? plural is the rails convention for resources I didn't see a good reason to get around that
+
+front end part can be seen here https://frosty-brahmagupta-08e5d7.netlify.app/
 
 ## Additional notes
 

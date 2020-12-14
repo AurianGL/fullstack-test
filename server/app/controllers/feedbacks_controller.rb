@@ -1,6 +1,12 @@
 class FeedbacksController < ApplicationController
   def index
-    @messages = Message.includes(:info)
+    p params
+    if params[:p] && params[:n]
+      index = (params[:p].to_i - 1) * params[:n].to_i
+      @messages = Message.includes(:info).limit(params[:n].to_i).offset(index)      
+    else 
+      @messages = Message.includes(:info)
+    end
     @res = []
     @messages.each do |message|
       @res << {

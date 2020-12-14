@@ -27,11 +27,11 @@ class FeedbacksController < ApplicationController
   end
 
   def show
-    @message = Message.find(params[:id])
+    @message = Message.find_by_id(params[:id])
     if @message
       render json: {message: @message, info: @message.info}
     else
-      render json: {mesage: "no message with id #{params}"}
+      render json: {mesage: "no message with id #{params[:id]}"}
     end
   end
   

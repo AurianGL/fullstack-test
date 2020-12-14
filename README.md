@@ -40,6 +40,9 @@ You tell me.
 `
 cd server &&  welink:install && rake welink:db && rake:start
 `
+unfortunately this will work if you have the right version of ruby, node, npm, yarn, etc...
+Why didn't I used Docker or a similar solution ? because the computer I'm using right now is set up with WSL2 and running Docker is an absolute nightmare if you don't have an infinite amount of RAM availabl
+This is also not what I used to deploy the app. Because Heroku required a package.js at the root of the project and CRA would required to eject to be able to do that. So I simply splitted the 
 
 ## Additional notes
 

@@ -26,7 +26,10 @@
 		"start": "react-scripts start",
 		"build": "react-scripts build",
 		"test": "react-scripts test",
-		"eject": "react-scripts eject"
+		"eject": "react-scripts eject",
+		"h-build": "yarn --cwd frontend install && yarn --cwd frontend build",
+		"deploy": "cp -a frontend/build/. public/",
+		"heroku-postbuild": "yarn h-build && yarn deploy"
 	},
 	"eslintConfig": {
 		"extends": [

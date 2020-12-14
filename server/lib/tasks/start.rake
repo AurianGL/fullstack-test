@@ -31,3 +31,12 @@ namespace :welink do
   desc 'install, init db, launch server'
   task all: [:db, :install, :start]
 end
+
+namespace :start do
+  task :development do
+    exec 'heroku local -f Procfile.dev'
+  end
+end
+
+desc 'Start development server'
+task :start => 'start:development'

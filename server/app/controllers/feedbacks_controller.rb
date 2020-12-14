@@ -1,7 +1,6 @@
 class FeedbacksController < ApplicationController
   def index
-    p params
-    if params[:p] && params[:n]
+    if params[:p] && params[:n] && params[:p] != "0"
       index = (params[:p].to_i - 1) * params[:n].to_i
       @messages = Message.includes(:info).limit(params[:n].to_i).offset(index)      
     else 
